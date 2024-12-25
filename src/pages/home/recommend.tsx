@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Section from "../../components/section";
+import Section from "../../components/common/section";
 import { Swiper } from "zmp-ui";
 
 export const RecommendContent: FC = () => {

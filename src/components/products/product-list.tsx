@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { productsState } from "../../state";
-import Section from "../section";
+import Section from "../common/section";
 import { Box } from "zmp-ui";
 import { ProductItem } from "./product-item";
 

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BottomNavigation, Icon } from "zmp-ui";
-import { CartIcon } from "../icons/cart-icon";
+import { CartIcon } from "../../icons/cart-icon";
 
 export type MenuItem = {
     label: string;
@@ -36,7 +36,6 @@ const Navigation = () => {
             id="footer"
             activeKey={location.pathname}
             onChange={navigate}
-            className="z-50"
         >
             {Object.keys(tabs).map((path: TabKeys) => (
                 <BottomNavigation.Item

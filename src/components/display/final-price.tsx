@@ -1,4 +1,4 @@
-// import React, { FC, useMemo } from "react";
+// import { FC, useMemo } from "react";
 // import { Product } from "../../types/product";
 // import { SelectedOptions } from "../../types/cart";
 
