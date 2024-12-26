@@ -1,4 +1,5 @@
-import { createOrder } from "zmp-sdk";
+import { Product } from "../types/product";
+import { SelectedOptions } from "../types/cart";
 
 
 export function calcFinalPrice(product: Product, options?: SelectedOptions) {
@@ -12,7 +13,7 @@ export function calcFinalPrice(product: Product, options?: SelectedOptions) {
   }
 
   if (options && product.variants) {
-    const selectedOptions: Option[] = [];
+    const selectedOptions: any[] = [];
     for (const variantKey in options) {
       const variant = product.variants.find((v) => v.id === variantKey);
       if (variant) {

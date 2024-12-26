@@ -13,7 +13,7 @@ const tabs: Record<string, MenuItem> = {
         label: "Trang chủ",
         icon: <Icon icon="zi-home" />,
     },
-    "/policy": {
+    "/notification": {
         label: "Thông báo",
         icon: <Icon icon="zi-notif" />,
     },

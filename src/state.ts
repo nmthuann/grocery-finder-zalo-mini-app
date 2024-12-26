@@ -3,6 +3,16 @@ import { Cart } from "./types/cart";
 import { Category } from "./types/category";
 import categories from "../mock/categories.json";
 import { Product, Variant } from "./types/product";
+import { getUserInfo } from "zmp-sdk";
+
+export const userState = selector({
+  key: "user",
+  get: async () => {
+    const { userInfo } = await getUserInfo({ autoRequestPermission: true });
+    return userInfo;
+  },
+});
+
 
 export const cartState = atom<Cart>({
   key: "cart",

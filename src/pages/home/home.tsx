@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import Categories from "./categories";
 import { Divider } from "../../components/common/divider";
 import { Welcome } from "./welcome";
-import ProductList from "../../components/products/product-list";
+import { ProductList } from "../../components/products/product-list";
 
 const HomePage = () => {
     return (

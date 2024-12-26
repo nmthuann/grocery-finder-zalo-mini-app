@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "../pages/home/home";
 import Navigation from "./ui/navigation";
 import { RecoilRoot } from "recoil";
-import CartPage from "../pages/cart";
+import CartPage from "../pages/cart/cart";
 import ProfilePage from "../pages/profile";
 import NotificationPage from "../pages/notification";
 import { ScrollRestoration } from "./scroll-restoration";
