@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Box, Input, useNavigate } from "zmp-ui";
+import { useNavigate } from "react-router-dom";
+import { Box, Input } from "zmp-ui";
 
 export const SearchInput: FC = () => {
     const navigate = useNavigate();

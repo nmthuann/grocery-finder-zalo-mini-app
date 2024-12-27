@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { Avatar, Box, Header, Icon, List, Page, Tabs, Text } from "zmp-ui";
+import { Box, Header, Page, Tabs, Text } from "zmp-ui";
 import {
     categoriesState,
     productsByCategoryState,
@@ -38,7 +38,7 @@ const CategoryPicker = () => {
         <Tabs
             scrollable
             defaultActiveKey={selectedCategory}
-            className="category-tabs mt-10"
+            className="category-tabs mt-16"
         >
             {categories.map((category) => (
                 <Tabs.Tab key={category.id} label={category.name}>
@@ -51,43 +51,12 @@ const CategoryPicker = () => {
     );
 };
 
-const alphabet = "abcdefghijklmnopqrstuvwxyz";
-const users = Array.from(Array(10).keys()).map((i) => ({
-    name: `Người dùng ${i}`,
-    avatar: alphabet[Math.floor(Math.random() * alphabet.length)].toUpperCase(),
-    online: Math.floor(Math.random() * 10) % 2 === 0,
-    key: i,
-}));
 const CategoryPage = () => {
     return (
         <Page className="flex flex-col">
             <Header title="Danh mục" />
+
             <CategoryPicker />
-            {/* <Tabs id="contact-list" className="mt-">
-                <Tabs.Tab key="tab1" label="Tab 1">
-                    <List>
-                        {users.map((user) => (
-                            <List.Item
-                                key={user.key}
-                                prefix={
-                                    <Avatar online={user.online}>
-                                        {user.avatar}
-                                    </Avatar>
-                                }
-                                title={user.name}
-                                subTitle="subtitle"
-                                suffix={<Icon icon="zi-call" />}
-                            />
-                        ))}
-                    </List>
-                </Tabs.Tab>
-                <Tabs.Tab key="tab2" label="Tab 2">
-                    Tab 2 content
-                </Tabs.Tab>
-                <Tabs.Tab key="tab3" label="Tab 3">
-                    Tab 3 content
-                </Tabs.Tab>
-            </Tabs> */}
         </Page>
     );
 };

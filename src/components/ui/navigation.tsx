@@ -1,7 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BottomNavigation, Icon } from "zmp-ui";
 import { CartIcon } from "../../icons/cart-icon";
+import { useVirtualKeyboardVisible } from "../../hooks/use-virtual-keyboard-visible";
 
 export type MenuItem = {
     label: string;
@@ -27,10 +28,20 @@ const tabs: Record<string, MenuItem> = {
         icon: <Icon icon="zi-setting" />,
     },
 };
+
+export const NO_BOTTOM_NAVIGATION_PAGES = ["/search", "/category", "/result"];
 export type TabKeys = keyof typeof tabs;
 const Navigation = () => {
+    const keyboardVisible = useVirtualKeyboardVisible();
     const navigate = useNavigate();
     const location = useLocation();
+    const noBottomNav = useMemo(() => {
+        return NO_BOTTOM_NAVIGATION_PAGES.includes(location.pathname);
+    }, [location]);
+
+    if (noBottomNav || keyboardVisible) {
+        return <></>;
+    }
     return (
         <BottomNavigation
             id="footer"
