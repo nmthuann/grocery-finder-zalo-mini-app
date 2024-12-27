@@ -7,10 +7,10 @@ import { CartPreview } from "./preview";
 
 const CartPage = () => {
     return (
-        <Page className="flex flex-col mt-10 bg-slate-100">
+        <Page className="flex flex-col  mt-16 bg-slate-100">
             <Header title="Giỏ hàng" showBackIcon={false} />
             <Divider />
-            <Box className="bg-white w-full ">
+            <Box className=" w-full ">
                 <CartItems />
                 <Divider size={4} />
                 <Delivery />

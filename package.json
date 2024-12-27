@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@zxing/browser": "^0.1.5",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -17,7 +18,8 @@
     "react-router-dom": "^7.1.1",
     "recoil": "^0.7.7",
     "zmp-sdk": "^2.44.0",
-    "zmp-ui": "^1.11.5"
+    "zmp-ui": "^1.11.5",
+    "zmp-vite-plugin": "^1.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -33,6 +35,6 @@
     "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
-    "vite": "^6.0.5"
+    "vite": "^5.0.0"
   }
 }

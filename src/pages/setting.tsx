@@ -23,7 +23,7 @@ const Subscription: FC = () => {
     return (
         <Box className="m-4" onClick={requestUserInfo}>
             <Box
-                className="bg-green-600 text-white rounded-xl p-4 space-y-2 mt-14"
+                className="bg-green-600 text-white rounded-xl p-4 space-y-2 mt-20"
                 style={{
                     backgroundImage: `url(${subscriptionDecor})`,
                     backgroundPosition: "right 8px center",
@@ -41,7 +41,7 @@ const Subscription: FC = () => {
     );
 };
 
-const ProfilePage = () => {
+const SettingPage = () => {
     const navigate = useNavigate();
     return (
         <Page className="bg-slate-100">
@@ -79,4 +79,4 @@ const ProfilePage = () => {
     );
 };
 
-export default ProfilePage;
+export default SettingPage;

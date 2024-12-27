@@ -13,6 +13,7 @@ export const Welcome: FC = () => {
                         <img
                             className="w-8 h-8 rounded-lg border-inset"
                             src={react}
+                            alt="React logo"
                         />
                         <Box>
                             <Text.Title size="small">

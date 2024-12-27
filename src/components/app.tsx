@@ -5,9 +5,10 @@ import HomePage from "../pages/home/home";
 import Navigation from "./ui/navigation";
 import { RecoilRoot } from "recoil";
 import CartPage from "../pages/cart/cart";
-import ProfilePage from "../pages/profile";
-import NotificationPage from "../pages/notification";
 import { ScrollRestoration } from "./scroll-restoration";
+import ScanPage from "../pages/scan";
+import SettingPage from "../pages/setting";
+import CategoryPage from "../pages/category";
 
 function MyApp() {
     return (
@@ -28,17 +29,25 @@ function MyApp() {
                                             path="/"
                                             element={<HomePage />}
                                         ></Route>
+                                        {/* <Route
+                                            path="/search"
+                                            element={<SearchPage />}
+                                        ></Route> */}
                                         <Route
-                                            path="/notification"
-                                            element={<NotificationPage />}
+                                            path="/category"
+                                            element={<CategoryPage />}
+                                        ></Route>
+                                        <Route
+                                            path="/scan"
+                                            element={<ScanPage />}
                                         ></Route>
                                         <Route
                                             path="/cart"
                                             element={<CartPage />}
                                         ></Route>
                                         <Route
-                                            path="/profile"
-                                            element={<ProfilePage />}
+                                            path="/setting"
+                                            element={<SettingPage />}
                                         ></Route>
                                     </Routes>
                                 </Box>

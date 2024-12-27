@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import { Cart } from "./types/cart";
 import { Category } from "./types/category";
 import categories from "../mock/categories.json";
@@ -14,12 +14,6 @@ export const userState = selector({
 });
 
 
-export const cartState = atom<Cart>({
-  key: "cart",
-  default: [],
-});
-
-
 export const categoriesState = selector<Category[]>({
   key: "categories",
   get: () => categories,
@@ -30,6 +24,20 @@ export const selectedCategoryIdState = atom({
   key: "selectedCategoryId",
   default: "coffee",
 });
+
+
+export const cartState = atom<Cart>({
+  key: "cart",
+  default: []
+})
+
+export const totaltotalQuantityState = selector({
+  key: "totalQuantity",
+  get:({get}) => {
+    const cart = get(cartState);
+    return cart.reduce((total, item)=>total + item.quantity,0);
+  }
+})
 
 export const productsState = selector<any[]>({
   key: "products",
@@ -48,6 +56,18 @@ export const productsState = selector<any[]>({
         } as Product)
     );
   },
+});
+
+export const productsByCategoryState = selectorFamily<Product[], string>({
+  key: "productsByCategory",
+  get:
+    (categoryId) =>
+    ({ get }) => {
+      const allProducts = get(productsState);
+      return allProducts.filter((product) =>
+        product.categoryId.includes(categoryId)
+      );
+    },
 });
 
 

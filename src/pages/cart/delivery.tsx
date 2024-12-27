@@ -7,39 +7,62 @@ const Delivery = () => {
     const [sheetChoiceUserVisible, setSheetChoiceUserVisible] = useState(false);
 
     return (
-        <Box className="space-y-3 px-4 bg-white">
-            <Text.Header>Hình thức nhận hàng</Text.Header>
-            <Item
-                prefix={<Icon icon="zi-location" />}
-                title="Địa chỉ giao hàng"
-                subTitle="Yêu cầu truy cập vị trí"
-                suffix={<Icon icon="zi-chevron-right" />}
-                onClick={() => {
-                    setSheetVisible(true);
-                }}
-            />
-            <Item
-                prefix={<Icon icon="zi-clock-1" />}
-                title="10h-10h30, 26/12/2024"
-                subTitle="Thời gian nhận hàng"
-                suffix={<Icon icon="zi-chevron-right" />}
-            />
-            <Item
-                prefix={<Icon icon="zi-user" />}
-                title="Chọn người nhận"
-                subTitle="Yêu cầu truy cập số điện thoại"
-                suffix={<Icon icon="zi-chevron-right" />}
-                onClick={() => {
-                    setSheetChoiceUserVisible(true);
-                }}
-            />
-            <Item
-                prefix={<Icon icon="zi-note" />}
-                title="Nhập ghi chú ..."
-                onClick={() => {
-                    setDialogVisible(true);
-                }}
-            />
+        <Box className="space-y-3 px-4 ">
+            <Text.Title className="pt-4 pl-2">Hình thức nhận hàng</Text.Title>
+            <Box className="bg-white  rounded-2xl">
+                <Item
+                    prefix={
+                        <Icon
+                            icon="zi-location"
+                            className=" items-center mt-2"
+                        />
+                    }
+                    title="Địa chỉ giao hàng"
+                    subTitle="Yêu cầu truy cập vị trí"
+                    suffix={
+                        <Icon
+                            icon="zi-chevron-right"
+                            className=" items-center mt-2"
+                        />
+                    }
+                    className="cursor-pointer"
+                    onClick={() => {
+                        setSheetVisible(true);
+                    }}
+                />
+                <Item
+                    prefix={
+                        <Icon
+                            icon="zi-clock-1"
+                            className=" items-center mt-2"
+                        />
+                    }
+                    title="10h-10h30, 26/12/2024"
+                    subTitle="Thời gian nhận hàng"
+                    suffix={<Icon icon="zi-chevron-right" />}
+                    className="cursor-pointer"
+                />
+                <Item
+                    prefix={
+                        <Icon icon="zi-user" className=" items-center mt-2" />
+                    }
+                    title="Chọn người nhận"
+                    subTitle="Yêu cầu truy cập số điện thoại"
+                    suffix={<Icon icon="zi-chevron-right" />}
+                    onClick={() => {
+                        setSheetChoiceUserVisible(true);
+                    }}
+                    className="cursor-pointer"
+                />
+                <Item
+                    prefix={<Icon icon="zi-note" />}
+                    title="Nhập ghi chú ..."
+                    onClick={() => {
+                        setDialogVisible(true);
+                    }}
+                    className="cursor-pointer"
+                />
+            </Box>
 
             <Modal
                 visible={dialogVisible}
