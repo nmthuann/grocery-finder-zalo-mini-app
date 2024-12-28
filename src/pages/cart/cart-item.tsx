@@ -198,19 +198,6 @@ const CartItems = () => {
                             </Button>
                         </Box>
                     </Box>
-                    <Box flex flexDirection="row" mt={1}>
-                        <Box style={{ flex: 1 }} pr={1}>
-                            <Button
-                                variant="secondary"
-                                fullWidth
-                                onClick={() => {
-                                    setSheetVisible(false);
-                                }}
-                            >
-                                Đóng
-                            </Button>
-                        </Box>
-                    </Box>
                 </Box>
             </Sheet>
         </Box>

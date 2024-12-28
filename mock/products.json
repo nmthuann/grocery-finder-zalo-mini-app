@@ -12,7 +12,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "9780201379624"
     },
     {
         "id": 2,
@@ -26,7 +27,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "8938500010002"
     },
     {
         "id": 3,
@@ -40,7 +42,8 @@
         ],
         "variantId": [
             "size"
-        ]
+        ],
+        "barcode": "8934674012415"
     },
     {
         "id": 4,
@@ -53,7 +56,8 @@
         ],
         "variantId": [
             "size"
-        ]
+        ],
+        "barcode": "8938500010004"
     },
     {
         "id": 5,
@@ -68,7 +72,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "8938500010005"
     },
     {
         "id": 6,
@@ -83,7 +88,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "8938500010006"
     },
     {
         "id": 7,
@@ -97,7 +103,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "8938500010007"
     },
     {
         "id": 8,
@@ -111,7 +118,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "8938500010008"
     },
     {
         "id": 9,
@@ -131,7 +139,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "8938500010009"
     },
     {
         "id": 10,
@@ -150,7 +159,8 @@
         "variantId": [
             "size",
             "topping"
-        ]
+        ],
+        "barcode": "8938500010010"
     },
     {
         "id": 11,
@@ -168,6 +178,7 @@
         "sale": {
             "type": "percent",
             "percent": 0.5
-        }
+        },
+        "barcode": "1234567890128"
     }
 ]

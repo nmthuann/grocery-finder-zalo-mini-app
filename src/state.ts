@@ -71,6 +71,17 @@ export const productsByCategoryState = selectorFamily<Product[], string>({
 });
 
 
+export const productByBarcodeState = selectorFamily<Product, string>({
+  key: "productByBarcode",
+  get:
+    (barcode) =>
+    ({ get }) => {
+      const allProducts = get(productsState);
+      return allProducts.find((product) => product.barcode === barcode)!;
+    },
+})
+
+
 export function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
