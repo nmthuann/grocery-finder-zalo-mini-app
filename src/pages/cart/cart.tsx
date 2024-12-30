@@ -1,7 +1,7 @@
 import { Box, Header, Page } from "zmp-ui";
 import CartItems from "./cart-item";
 import Delivery from "./delivery";
-import { Divider } from "../../components/common/divider";
+import { Divider } from "../../components/ui/divider";
 import { TermsAndPolicies } from "./term-and-policy";
 import { CartPreview } from "./preview";
 

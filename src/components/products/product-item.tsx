@@ -3,6 +3,8 @@ import { Box, Button, Sheet, Text } from "zmp-ui";
 import { Product } from "../../types/product";
 import { useSetRecoilState } from "recoil";
 import { cartState } from "../../state";
+import { CartPlusIcon } from "../../icons/cart-plus-icon";
+import Price from "../display/price";
 
 export const ProductItem: FC<{ product: Product }> = ({ product }) => {
     const [sheetVisible, setSheetVisible] = useState(false);
@@ -44,6 +46,7 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                 onClick={() => {
                     setSheetVisible(true);
                 }}
+                className="bg-white p-4 rounded-lg shadow-md"
             >
                 <Box className="w-full aspect-square relative">
                     <img
@@ -53,14 +56,27 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                         className="absolute left-0 right-0 top-0 bottom-0 w-full h-full object-cover object-center rounded-lg bg-skeleton"
                     />
                 </Box>
-                <Text bold>{product.name}</Text>
-                <Box flex flexDirection="row" className="justify-between">
-                    <Text size="xxSmall" className="text-gray pb-2">
-                        {`${product.price} đ`}
+                <Text bold size="large" className="pt-2">
+                    {product.name}
+                </Text>
+                <Box
+                    flex
+                    flexDirection="row"
+                    className="justify-between items-center "
+                >
+                    <Text
+                        size="large"
+                        className="text-[#FF3D12] pb-2 font-bold"
+                    >
+                        <Price amount={product.price} />
                     </Text>
-                    <Text size="xxSmall" className="text-gray pb-2">
-                        đã bán 3k
-                    </Text>
+                    <Box>
+                        <Button
+                            className="bg-[#e76302] "
+                            size="medium"
+                            icon={<CartPlusIcon />}
+                        ></Button>
+                    </Box>
                 </Box>
             </Box>
             <Sheet

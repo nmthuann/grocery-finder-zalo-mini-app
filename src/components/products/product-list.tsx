@@ -1,22 +1,41 @@
 import { useRecoilValue } from "recoil";
-import { productsState } from "../../state";
-import Section from "../common/section";
-import { Box } from "zmp-ui";
+import { newsListState, productsState } from "../../state";
+import Section from "../ui/section";
 import { ProductItem } from "./product-item";
 import { FC, Suspense } from "react";
-import { ProductItemSkeleton } from "../common/skeleton";
+import { ProductItemSkeleton } from "../ui/skeleton";
+import { Box, Text } from "zmp-ui";
 
 export const ProductListContent: FC = () => {
     const products = useRecoilValue(productsState);
+    const newsList = useRecoilValue(newsListState);
 
     return (
-        <Section title="Danh sách sản phẩm">
+        <div className="bg-slate-100 p-4 mb-10">
+            <Box className="flex flex-row justify-center items-center w-full m-4">
+                <Text.Title className="text-[3A3C3D] font-semibold text-lg">
+                    SẢN PHẨM HOT
+                </Text.Title>
+            </Box>
+
             <Box className="grid grid-cols-2 gap-4">
                 {products.map((product) => (
                     <ProductItem key={product.id} product={product} />
                 ))}
             </Box>
-        </Section>
+
+            <Box className="flex flex-row justify-center items-center w-full m-4">
+                <Text.Title className="text-[3A3C3D] font-semibold text-lg">
+                    TIN TỨC
+                </Text.Title>
+            </Box>
+
+            <Box className="grid grid-cols-2 gap-4">
+                {products.map((product) => (
+                    <ProductItem key={product.id} product={product} />
+                ))}
+            </Box>
+        </div>
     );
 };
 

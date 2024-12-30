@@ -1,7 +1,7 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Box, Button, Icon, Sheet, Text } from "zmp-ui";
 import { cartState } from "../../state";
-import { Divider } from "../../components/common/divider";
+import { Divider } from "../../components/ui/divider";
 import { useEffect, useState } from "react";
 import { Product } from "../../types/product";
 

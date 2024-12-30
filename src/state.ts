@@ -1,9 +1,10 @@
+import { getUserInfo } from "zmp-sdk";
 import { atom, selector, selectorFamily } from "recoil";
 import { Cart } from "./types/cart";
 import { Category } from "./types/category";
 import categories from "../mock/categories.json";
-import { Product, Variant } from "./types/product";
-import { getUserInfo } from "zmp-sdk";
+import { Product, } from "./types/product";
+import { News } from "./types/news";
 
 export const userState = selector({
   key: "user",
@@ -39,24 +40,7 @@ export const totaltotalQuantityState = selector({
   }
 })
 
-export const productsState = selector<any[]>({
-  key: "products",
-  get: async () => {
-    await wait(2000);
-    const products = (await import("../mock/products.json")).default;
-    const variants = (await import("../mock/variants.json"))
-      .default as Variant[];
-    return products.map(
-      (product) =>
-        ({
-          ...product,
-          variants: variants.filter((variant) =>
-            product.variantId.includes(variant.id)
-          ),
-        } as Product)
-    );
-  },
-});
+
 
 export const productsByCategoryState = selectorFamily<Product[], string>({
   key: "productsByCategory",
@@ -81,6 +65,21 @@ export const productByBarcodeState = selectorFamily<Product, string>({
     },
 })
 
+export const productsState = selector<Product[]>({
+  key: "products",
+  get: async () => {
+    await wait(2000);
+   return (await import("../mock/products.json")).default;
+  }
+});
+
+export const newsListState = selector<News[]>({
+  key: "newsList",
+  get: async () => {
+    await wait(2000);
+    return (await import("../mock/news-list.json")).default;
+  }
+})
 
 export function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

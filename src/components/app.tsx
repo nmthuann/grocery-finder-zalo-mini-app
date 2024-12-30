@@ -1,14 +1,15 @@
 import { App, Box, SnackbarProvider, ZMPRouter } from "zmp-ui";
 import "../css/App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "../pages/home/home";
+import HomePage from "../pages/home";
 import Navigation from "./ui/navigation";
 import { RecoilRoot } from "recoil";
 import CartPage from "../pages/cart/cart";
-import { ScrollRestoration } from "./scroll-restoration";
+import { ScrollRestoration } from "./ui/scroll-restoration";
 import ScanPage from "../pages/scan";
 import SettingPage from "../pages/setting";
 import CategoryPage from "../pages/category";
+import SearchPage from "../pages/search";
 
 function MyApp() {
     return (
@@ -29,10 +30,10 @@ function MyApp() {
                                             path="/"
                                             element={<HomePage />}
                                         ></Route>
-                                        {/* <Route
+                                        <Route
                                             path="/search"
                                             element={<SearchPage />}
-                                        ></Route> */}
+                                        ></Route>
                                         <Route
                                             path="/category"
                                             element={<CategoryPage />}

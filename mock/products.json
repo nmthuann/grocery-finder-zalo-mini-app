@@ -1,184 +1,130 @@
 [
     {
         "id": 1,
-        "name": "Caramel Latte",
+        "name": "Kệ Hoa Đám Tang 130",
         "price": 35000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-1.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-130.jpg",
         "description": "A delightful blend of caramel and coffee in Caramel Latte.",
         "categoryId": [
             "coffee",
             "drinks"
         ],
-        "variantId": [
-            "size",
-            "topping"
-        ],
         "barcode": "9780201379624"
     },
     {
         "id": 2,
-        "name": "Mocha Frappuccino",
+        "name": "Kệ Hoa Đám Tang 129",
         "price": 45000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-2.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-129.jpg",
         "description": "Enjoy the chocolatey richness of Mocha Frappuccino.",
         "categoryId": [
             "coffee"
-        ],
-        "variantId": [
-            "size",
-            "topping"
         ],
         "barcode": "8938500010002"
     },
     {
         "id": 3,
-        "name": "Grilled Pork Banh Mi",
+        "name": "Kệ Hoa Đám Tang 126",
         "price": 30000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-3.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-126.jpg",
         "description": "Savor the authentic taste of Grilled Pork Banh Mi.",
         "categoryId": [
             "food",
             "bread"
         ],
-        "variantId": [
-            "size"
-        ],
         "barcode": "8934674012415"
     },
     {
         "id": 4,
-        "name": "Pizza",
+        "name": "Kệ Hoa Đám Tang 127",
         "price": 28000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-4.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-127.jpg",
         "description": "Classic and flavorful, enjoy our Pizza today.",
         "categoryId": [
             "food"
-        ],
-        "variantId": [
-            "size"
         ],
         "barcode": "8938500010004"
     },
     {
         "id": 5,
-        "name": "Vanilla Latte",
+        "name": "Kệ Hoa Đám Tang 128",
         "price": 35000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-5.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-128.jpg",
         "description": "Smooth and creamy Vanilla Latte to brighten your day.",
         "categoryId": [
             "coffee",
             "matcha"
         ],
-        "variantId": [
-            "size",
-            "topping"
-        ],
         "barcode": "8938500010005"
     },
     {
         "id": 6,
-        "name": "Caramel Macchiato",
+        "name": "Kệ Hoa Đám Tang 125",
         "price": 38000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-6.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-125.jpg",
         "description": "A classic favorite, Caramel Macchiato is perfect for any time.",
         "categoryId": [
             "coffee",
             "milktea"
         ],
-        "variantId": [
-            "size",
-            "topping"
-        ],
         "barcode": "8938500010006"
     },
     {
         "id": 7,
-        "name": "Espresso",
+        "name": "Kệ Hoa Đám Tang 124",
         "price": 32000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-7.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-124.jpg",
         "description": "Bold and robust, Espresso is your perfect pick-me-up.",
         "categoryId": [
             "coffee"
-        ],
-        "variantId": [
-            "size",
-            "topping"
         ],
         "barcode": "8938500010007"
     },
     {
         "id": 8,
-        "name": "Green Tea Latte",
+        "name": "Kệ Hoa Đám Tang 130",
         "price": 25000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-square-8.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-130.jpg",
         "description": "Refresh your senses with Green Tea Latte.",
         "categoryId": [
             "matcha"
-        ],
-        "variantId": [
-            "size",
-            "topping"
         ],
         "barcode": "8938500010008"
     },
     {
         "id": 9,
-        "name": "Bộ 3 Blue Corner Coffee siêu HOT",
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-rect-1.webp",
+        "name": "Kệ Hoa Đám Tang 129",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-129.jpg",
         "price": 25000,
-        "sale": {
-            "type": "percent",
-            "percent": 0.2
-        },
         "description": "An amazing deal with Bộ 3 Blue Corner Coffee siêu HOT.",
         "categoryId": [
             "coffee",
             "milktea",
             "drinks"
         ],
-        "variantId": [
-            "size",
-            "topping"
-        ],
         "barcode": "8938500010009"
     },
     {
         "id": 10,
-        "name": "Combo Hi Tea Aroma",
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-rect-2.webp",
+        "name": "Kệ Hoa Đám Tang 127",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-127.jpg",
         "price": 57000,
-        "sale": {
-            "type": "fixed",
-            "amount": 7000
-        },
         "description": "Enjoy the elegance of Combo Hi Tea Aroma.",
         "categoryId": [
             "coffee",
             "drinks"
         ],
-        "variantId": [
-            "size",
-            "topping"
-        ],
         "barcode": "8938500010010"
     },
     {
         "id": 11,
-        "name": "Milk Tea Combo",
+        "name": "Kệ Hoa Đám Tang 128",
         "price": 55000,
-        "image": "https://stc-zmp.zadn.vn/templates/zaui-coffee/dummy/product-rect-3.webp",
+        "image": "https://staging-shop.fado.vn/data/product/hoa-chia-buon/ke-hoa-dam-tang-128.jpg",
         "description": "Indulge in the rich flavors of Milk Tea Combo.",
         "categoryId": [
             "milktea"
         ],
-        "variantId": [
-            "size",
-            "topping"
-        ],
-        "sale": {
-            "type": "percent",
-            "percent": 0.5
-        },
         "barcode": "1234567890128"
     }
 ]

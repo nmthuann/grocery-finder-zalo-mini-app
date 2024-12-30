@@ -1,5 +1,5 @@
 import { Box, Button, Header, Icon, Page } from "zmp-ui";
-import { Divider } from "../components/common/divider";
+import { Divider } from "../components/ui/divider";
 import { useEffect, useRef, useState } from "react";
 import api, { FacingMode, ZMACamera } from "zmp-sdk";
 import {
@@ -14,14 +14,15 @@ import { Product } from "../types/product";
 const ScanPage: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const cameraRef = useRef<ZMACamera>();
-
     const [barcode, setBarcode] = useState<string>("");
     const [isScanning, setIsScanning] = useState(false);
     const [scannedProducts, setScannedProducts] = useState<Product[]>([]);
 
-    const product = useRecoilValue(productByBarcodeState(barcode));
     const [quantity, setQuantity] = useState(1);
     const setCart = useSetRecoilState(cartState);
+
+    const product = useRecoilValue(productByBarcodeState(barcode));
+
     useEffect(() => {
         const videoElement = videoRef.current as HTMLVideoElement;
         if (!videoElement) {
@@ -63,7 +64,6 @@ const ScanPage: React.FC = () => {
                         setBarcode(scannedBarcode);
 
                         if (product) {
-                            // Thêm sản phẩm vào danh sách nếu chưa có
                             setScannedProducts((prev) => {
                                 const alreadyScanned = prev.some(
                                     (p) => p.barcode === scannedBarcode
@@ -73,6 +73,7 @@ const ScanPage: React.FC = () => {
                                     : [...prev, product];
                             });
                         }
+
                         stopCamera();
                     }
                 })
@@ -172,8 +173,8 @@ const ScanPage: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {scannedProducts.map((product) => (
-                                <tr key={product.id}>
+                            {scannedProducts.map((product, index) => (
+                                <tr key={index}>
                                     <td className="border px-4 py-2">
                                         {product.name}
                                     </td>
