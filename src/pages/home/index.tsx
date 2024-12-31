@@ -13,12 +13,7 @@ const HomePage = () => {
         <Page className=" relative flex-1 flex flex-col bg-white ">
             <Welcome />
             <Box className="flex-1 overflow-auto mt-16">
-                {/* <SearchInput /> */}
                 <Banner />
-                {/* <Suspense>
-                    <Categories />
-                </Suspense> */}
-                {/* <Divider /> */}
                 <ProductList />
                 <Divider />
             </Box>

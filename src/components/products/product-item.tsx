@@ -1,40 +1,39 @@
 import { FC, useState } from "react";
 import { Box, Button, Sheet, Text } from "zmp-ui";
 import { Product } from "../../types/product";
-import { useSetRecoilState } from "recoil";
-import { cartState } from "../../state";
 import { CartPlusIcon } from "../../icons/cart-plus-icon";
 import Price from "../display/price";
+import { cartState } from "../../state";
+import { useRecoilState } from "recoil";
+import { Cart } from "../../types/cart";
 
 export const ProductItem: FC<{ product: Product }> = ({ product }) => {
     const [sheetVisible, setSheetVisible] = useState(false);
+    const [cart, setCart] = useRecoilState(cartState);
 
-    const [quantity, setQuantity] = useState(1);
-    const setCart = useSetRecoilState(cartState);
-
-    const addToCart = () => {
-        alert("Đã thêm vào giỏ hàng.");
+    const addCartItem = () => {
         if (product) {
-            setCart((cart: any) => {
-                let res = [...cart];
+            console.log("Thêm vào giỏ hàng", cart.length);
+            setCart((oldCart: Cart[]) => {
+                let newCart = [...oldCart];
 
-                const existed = cart.find(
-                    (item: { product: { id: number } }) =>
-                        item.product.id === product.id
+                const exsited = oldCart.find(
+                    (item) => item.product.id === product.id
                 );
-                if (existed) {
-                    res.splice(cart.indexOf(existed), 1, {
-                        ...existed,
-                        quantity: existed.quantity + quantity,
+
+                if (exsited) {
+                    newCart.splice(oldCart.indexOf(exsited), 1, {
+                        ...exsited,
+                        quantity: exsited.quantity + 1,
                     });
                 } else {
-                    res = res.concat({
+                    newCart = newCart.concat({
                         product,
-                        quantity,
+                        quantity: 1,
                     });
                 }
 
-                return res;
+                return newCart;
             });
         }
         setSheetVisible(false);
@@ -46,7 +45,7 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                 onClick={() => {
                     setSheetVisible(true);
                 }}
-                className="bg-white p-4 rounded-lg shadow-md"
+                className="bg-white p-4 rounded-lg shadow-md w-[164px] h-[256px] cursor-pointer"
             >
                 <Box className="w-full aspect-square relative">
                     <img
@@ -75,7 +74,7 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                             className="bg-[#e76302] "
                             size="medium"
                             icon={<CartPlusIcon />}
-                        ></Button>
+                        />
                     </Box>
                 </Box>
             </Box>
@@ -105,7 +104,7 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                         />
                     </Box>
                     <Box my={4}>
-                        <Text.Title>{`Thêm sản phẩm ${product.name}`}</Text.Title>
+                        <Text.Title>{product.name}</Text.Title>
                     </Box>
                     <Box
                         className="bottom-sheet-body mb-4"
@@ -114,7 +113,12 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                         <Text>{product.description}</Text>
                     </Box>
                     <Box>
-                        <Text>{`${product.price} đ`}</Text>
+                        <Text
+                            size="large"
+                            className="text-[#FF3D12] pb-2 font-bold"
+                        >
+                            <Price amount={product.price} />
+                        </Text>
                     </Box>
                     <Box flex flexDirection="row" mt={1}>
                         <Box style={{ flex: 1 }} pr={1}>
@@ -129,7 +133,7 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                             </Button>
                         </Box>
                         <Box style={{ flex: 1 }} pl={1}>
-                            <Button fullWidth onClick={addToCart}>
+                            <Button fullWidth onClick={addCartItem}>
                                 {`Thêm vào giỏ hàng`}
                             </Button>
                         </Box>

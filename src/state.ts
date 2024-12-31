@@ -1,4 +1,3 @@
-import { getUserInfo } from "zmp-sdk";
 import { atom, selector, selectorFamily } from "recoil";
 import { Cart } from "./types/cart";
 import { Category } from "./types/category";
@@ -6,14 +5,9 @@ import categories from "../mock/categories.json";
 import { Product, } from "./types/product";
 import { News } from "./types/news";
 
-export const userState = selector({
-  key: "user",
-  get: async () => {
-    const { userInfo } = await getUserInfo({ autoRequestPermission: true });
-    return userInfo;
-  },
-});
-
+export function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export const categoriesState = selector<Category[]>({
   key: "categories",
@@ -25,21 +19,6 @@ export const selectedCategoryIdState = atom({
   key: "selectedCategoryId",
   default: "coffee",
 });
-
-
-export const cartState = atom<Cart>({
-  key: "cart",
-  default: []
-})
-
-export const totaltotalQuantityState = selector({
-  key: "totalQuantity",
-  get:({get}) => {
-    const cart = get(cartState);
-    return cart.reduce((total, item)=>total + item.quantity,0);
-  }
-})
-
 
 
 export const productsByCategoryState = selectorFamily<Product[], string>({
@@ -60,8 +39,8 @@ export const productByBarcodeState = selectorFamily<Product, string>({
   get:
     (barcode) =>
     ({ get }) => {
-      const allProducts = get(productsState);
-      return allProducts.find((product) => product.barcode === barcode)!;
+      const products = get(productsState);
+      return products.find((product) => product.barcode === barcode)!;
     },
 })
 
@@ -81,6 +60,7 @@ export const newsListState = selector<News[]>({
   }
 })
 
-export function wait(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+export const cartState = atom<Cart[]>({
+  key: "cart",
+  default: [],
+})

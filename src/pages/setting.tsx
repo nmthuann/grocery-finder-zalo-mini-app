@@ -1,27 +1,11 @@
 import { FC } from "react";
-import { useRecoilCallback } from "recoil";
 import { Box, Header, Text, Icon, List, Page, useNavigate } from "zmp-ui";
-import { userState } from "../state";
 import subscriptionDecor from "../icons/subscription-decor.svg";
 const { Item } = List;
 
 const Subscription: FC = () => {
-    const requestUserInfo = useRecoilCallback(
-        ({ snapshot }) =>
-            async () => {
-                const userInfo = await snapshot.getPromise(userState);
-                console.warn(
-                    "Các bên tích hợp có thể sử dụng userInfo ở đây...",
-                    {
-                        userInfo,
-                    }
-                );
-            },
-        []
-    );
-
     return (
-        <Box className="m-4" onClick={requestUserInfo}>
+        <Box className="m-4">
             <Box
                 className="bg-green-600 text-white rounded-xl p-4 space-y-2 mt-20"
                 style={{
