@@ -6,10 +6,10 @@ import Navigation from "./ui/navigation";
 import { RecoilRoot } from "recoil";
 import CartPage from "../pages/cart";
 import { ScrollRestoration } from "./ui/scroll-restoration";
+import SearchPage from "../pages/search";
+import CategoryPage from "../pages/category";
 import ScanPage from "../pages/scan";
 import SettingPage from "../pages/setting";
-import CategoryPage from "../pages/category";
-import SearchPage from "../pages/search";
 
 function MyApp() {
     return (

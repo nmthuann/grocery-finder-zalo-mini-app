@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Box, Header, Text, Icon, List, Page, useNavigate } from "zmp-ui";
-import subscriptionDecor from "../icons/subscription-decor.svg";
+import subscriptionDecor from "../../icons/subscription-decor.svg";
 const { Item } = List;
 
 const Subscription: FC = () => {

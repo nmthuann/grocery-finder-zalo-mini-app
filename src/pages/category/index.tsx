@@ -4,9 +4,9 @@ import {
     categoriesState,
     productsByCategoryState,
     selectedCategoryIdState,
-} from "../state";
+} from "../../state";
 import { FC, Suspense } from "react";
-import { ProductItem } from "../components/products/product-item";
+import { ProductItem } from "../../components/products/product-item";
 
 const CategoryProducts: FC<{ categoryId: string }> = ({ categoryId }) => {
     const productsByCategory = useRecoilValue(

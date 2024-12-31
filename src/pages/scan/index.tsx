@@ -1,5 +1,5 @@
 import { Box, Button, Header, Icon, Page } from "zmp-ui";
-import { Divider } from "../components/ui/divider";
+import { Divider } from "../../components/ui/divider";
 import { useEffect, useRef, useState } from "react";
 import api, { FacingMode, ZMACamera } from "zmp-sdk";
 import {
@@ -8,8 +8,8 @@ import {
     DecodeHintType,
 } from "@zxing/library";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { cartState, productByBarcodeState } from "../state";
-import { Product } from "../types/product";
+import { cartState, productByBarcodeState } from "../../state";
+import { Product } from "../../types/product";
 
 const ScanPage: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -18,7 +18,6 @@ const ScanPage: React.FC = () => {
     const [isScanning, setIsScanning] = useState(false);
     const [scannedProducts, setScannedProducts] = useState<Product[]>([]);
 
-    const [quantity, setQuantity] = useState(1);
     const setCart = useSetRecoilState(cartState);
 
     const product = useRecoilValue(productByBarcodeState(barcode));
@@ -106,12 +105,12 @@ const ScanPage: React.FC = () => {
                 if (existed) {
                     res.splice(cart.indexOf(existed), 1, {
                         ...existed,
-                        quantity: existed.quantity + quantity,
+                        quantity: existed.quantity + 1,
                     });
                 } else {
                     res = res.concat({
                         product,
-                        quantity,
+                        quantity: 1,
                     });
                 }
 

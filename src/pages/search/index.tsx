@@ -1,5 +1,5 @@
 import { Page } from "zmp-ui";
-import { SearchInput } from "./home/search-input";
+import { SearchInput } from "../home/search-input";
 
 const SearchPage: React.FC = () => {
     return (
