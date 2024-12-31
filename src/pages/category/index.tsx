@@ -55,7 +55,6 @@ const CategoryPage = () => {
     return (
         <Page className="flex flex-col">
             <Header title="Danh mục" />
-
             <CategoryPicker />
         </Page>
     );
