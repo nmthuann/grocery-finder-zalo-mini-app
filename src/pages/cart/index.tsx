@@ -14,7 +14,7 @@ const CartPage = () => {
                 <CartItems />
                 <Divider size={4} />
                 <Delivery />
-                <Divider size={12} />
+                <Divider size={4} />
                 <TermsAndPolicies />
                 <Divider size={32} className="flex-1" />
                 <CartPreview />

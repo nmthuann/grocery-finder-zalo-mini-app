@@ -27,13 +27,13 @@ const CartItems = () => {
     };
 
     return (
-        <Box className="bg-slate-50 ">
+        <Box className="max-h-56 overflow-y-auto p-2 ">
             {cart.length > 0 ? (
                 cart.map((item) => (
-                    <div key={item.product.id} className="rounded-xl">
+                    <div key={item.product.id}>
                         <Box
                             flex
-                            className="space-x-1 p-4 bg-white"
+                            className="space-x-1 p-4 bg-white rounded-xl"
                             onClick={() => handOnClickCartItem(item)}
                         >
                             <Box>

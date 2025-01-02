@@ -1,12 +1,15 @@
-import { Page } from "zmp-ui";
+import { Box, Header, Page } from "zmp-ui";
 import { SearchInput } from "../home/search-input";
 import Categories from "../home/categories";
 
 const SearchPage: React.FC = () => {
     return (
         <Page className="bg-slate-100 ">
-            <SearchInput />
-            <Categories />
+            <Header title="Tìm kiếm" />
+            <Box className="pt-16">
+                <SearchInput />
+                <Categories />
+            </Box>
         </Page>
     );
 };

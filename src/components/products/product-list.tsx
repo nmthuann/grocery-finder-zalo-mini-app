@@ -4,8 +4,9 @@ import Section from "../ui/section";
 import { ProductItem } from "./product-item";
 import { FC, Suspense, useEffect, useState } from "react";
 import { ProductItemSkeleton } from "../ui/skeleton";
-import { Box, Text } from "zmp-ui";
+import { Box, Button, Icon, Text } from "zmp-ui";
 import NewsItem from "./news-item";
+import { CartIcon } from "../../icons/cart-icon";
 
 export const ProductListContent: FC = () => {
     const products = useRecoilValue(productsState);
@@ -25,7 +26,7 @@ export const ProductListContent: FC = () => {
     }, [startIndex, newsList]);
 
     return (
-        <div className="bg-slate-100 p-4 mb-10">
+        <div className=" bg-slate-100 p-4 mb-10">
             <Box className="flex flex-row justify-center items-center w-full m-4">
                 <Text.Title className="text-[3A3C3D] font-semibold text-lg">
                     SẢN PHẨM HOT
@@ -49,6 +50,21 @@ export const ProductListContent: FC = () => {
                     <NewsItem key={news.id} news={news} />
                 ))}
             </Box>
+
+            <Button
+                size="large"
+                className=" fixed animate-bounce  
+                flex justify-center items-center
+        opacity-90 rounded-full left-3/4 bottom-14   
+        bg-orange-500"
+                icon={
+                    <Icon
+                        icon="zi-chat"
+                        size={32}
+                        className="text-white bottom-1 right-1"
+                    />
+                }
+            ></Button>
         </div>
     );
 };
