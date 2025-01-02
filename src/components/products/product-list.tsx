@@ -44,7 +44,7 @@ export const ProductListContent: FC = () => {
                 </Text.Title>
             </Box>
 
-            <Box className="  grid grid-cols-2 gap-4 duration-1000 esease-in-out">
+            <Box className="grid grid-cols-2 gap-4 duration-1000 esease-in-out">
                 {visibleViewNews.map((news) => (
                     <NewsItem key={news.id} news={news} />
                 ))}
