@@ -6,7 +6,6 @@ import { FC, Suspense, useEffect, useState } from "react";
 import { ProductItemSkeleton } from "../ui/skeleton";
 import { Box, Button, Icon, Text } from "zmp-ui";
 import NewsItem from "./news-item";
-import { CartIcon } from "../../icons/cart-icon";
 
 export const ProductListContent: FC = () => {
     const products = useRecoilValue(productsState);
@@ -33,19 +32,19 @@ export const ProductListContent: FC = () => {
                 </Text.Title>
             </Box>
 
-            <Box className="grid grid-cols-2 gap-4">
+            <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-2 ">
                 {products.map((product) => (
                     <ProductItem key={product.id} product={product} />
                 ))}
             </Box>
 
-            <Box className="flex flex-row justify-center items-center w-full mt-4 mb-4">
+            <Box className="flex flex-row justify-center items-center w-full mt-4 mb-4 ">
                 <Text.Title className="text-[3A3C3D] font-semibold text-lg">
                     TIN TỨC
                 </Text.Title>
             </Box>
 
-            <Box className="grid grid-cols-2 gap-4 duration-1000 esease-in-out">
+            <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2 ">
                 {visibleViewNews.map((news) => (
                     <NewsItem key={news.id} news={news} />
                 ))}
@@ -73,7 +72,7 @@ export const ProductListFallback: FC = () => {
     const products = [...new Array(12)];
 
     return (
-        <Section title="Danh sách sản phẩm">
+        <Section title="SẢN PHẨM HOT">
             <Box className="grid grid-cols-2 gap-4">
                 {products.map((_, i) => (
                     <ProductItemSkeleton key={i} />

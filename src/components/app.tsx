@@ -5,7 +5,6 @@ import HomePage from "../pages/home";
 import Navigation from "./ui/navigation";
 import { RecoilRoot } from "recoil";
 import CartPage from "../pages/cart";
-import { ScrollRestoration } from "./ui/scroll-restoration";
 import SearchPage from "../pages/search";
 import CategoryPage from "../pages/category";
 import ScanPage from "../pages/scan";
@@ -23,7 +22,7 @@ function MyApp() {
                                 flexDirection="column"
                                 className="h-screen"
                             >
-                                <ScrollRestoration />
+                                {/* <ScrollRestoration /> */}
                                 <Box className="flex-1 flex flex-col overflow-hidden">
                                     <Routes>
                                         <Route

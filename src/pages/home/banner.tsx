@@ -3,11 +3,11 @@ import { Box, Swiper } from "zmp-ui";
 const Banner = () => {
     return (
         <Box
-            mt={6}
             flex
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
+            className="p-2 bg-slate-100 mt-2"
         >
             <Swiper autoplay duration={2000} loop>
                 <Swiper.Slide>

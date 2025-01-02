@@ -23,7 +23,7 @@ const CategoryProducts: FC<{ categoryId: string }> = ({ categoryId }) => {
         );
     }
     return (
-        <Box className="bg-background grid grid-cols-2 gap-4 p-4 ">
+        <Box className="grid grid-cols-2 gap-4 p-4 max-h-screen overflow-y-auto">
             {productsByCategory.map((product) => (
                 <ProductItem key={product.id} product={product} />
             ))}
@@ -38,7 +38,7 @@ const CategoryPicker = () => {
         <Tabs
             scrollable
             defaultActiveKey={selectedCategory}
-            className="category-tabs mt-16"
+            className=" mt-16 "
         >
             {categories.map((category) => (
                 <Tabs.Tab key={category.id} label={category.name}>
@@ -53,7 +53,7 @@ const CategoryPicker = () => {
 
 const CategoryPage = () => {
     return (
-        <Page className="flex flex-col">
+        <Page className="flex flex-col mb-16">
             <Header title="Danh mục" />
             <CategoryPicker />
         </Page>

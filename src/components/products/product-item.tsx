@@ -45,14 +45,16 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                 onClick={() => {
                     setSheetVisible(true);
                 }}
-                className="bg-white p-4 rounded-lg shadow-md w-[164px] h-[256px] cursor-pointer"
+                className="bg-white p-4 rounded-lg shadow-md
+                 w-[164px] h-[256px] cursor-pointer"
             >
                 <Box className="w-full aspect-square relative">
                     <img
                         alt={product.name}
                         loading="lazy"
                         src={product.image}
-                        className="absolute left-0 right-0 top-0 bottom-0 w-full h-full object-cover object-center rounded-lg bg-skeleton"
+                        className="absolute left-0 right-0 top-0 bottom-0 
+                        w-full h-full object-cover object-center rounded-lg bg-skeleton"
                     />
                 </Box>
                 <Text bold size="large" className="pt-2">
