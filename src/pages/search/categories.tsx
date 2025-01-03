@@ -24,7 +24,7 @@ const Categories = () => {
                     flex flex-col space-y-2 
                     m-4
                     items-center bg-transparent border-0 
-                     cursor-pointer"
+                    cursor-pointer"
                 >
                     <img
                         className="w-24 h-24"

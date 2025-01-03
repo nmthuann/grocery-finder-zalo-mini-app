@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
-import { Box, Button, Icon, Sheet, Text } from "zmp-ui";
+import { FC, useEffect, useRef, useState } from "react";
+import { Box, Button, Icon, Sheet, Text, useSnackbar } from "zmp-ui";
 import { Cart } from "../../types/cart";
 import { useRecoilState } from "recoil";
 import { cartState } from "../../state";
@@ -18,7 +18,16 @@ const CartItemSheet: FC<CartItemSheetProps> = ({
 }) => {
     const [cart, setCart] = useRecoilState(cartState);
     const [quantity, setQuantity] = useState(itemSelected?.quantity);
+    const { openSnackbar, closeSnackbar } = useSnackbar();
+    const timmerId = useRef();
 
+    useEffect(
+        () => () => {
+            closeSnackbar();
+            clearInterval(timmerId.current);
+        },
+        []
+    );
     useEffect(() => {
         setQuantity(itemSelected?.quantity);
     }, [itemSelected]);
@@ -47,6 +56,10 @@ const CartItemSheet: FC<CartItemSheetProps> = ({
         const updateCart = cart.filter((item) => item.product.id !== productId);
         setCart(updateCart);
         handleSheetClose();
+        openSnackbar({
+            text: "Bạn đã xóa sản phẩm khỏi giỏ hàng",
+            type: "success",
+        });
     };
 
     const handleSheetClose = () => {

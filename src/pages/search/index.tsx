@@ -1,6 +1,6 @@
 import { Box, Header, Page } from "zmp-ui";
-import { SearchInput } from "../home/search-input";
-import Categories from "../home/categories";
+import { SearchInput } from "./search-input";
+import Categories from "./categories";
 
 const SearchPage: React.FC = () => {
     return (

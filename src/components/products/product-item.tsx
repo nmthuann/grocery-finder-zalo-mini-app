@@ -1,5 +1,5 @@
-import { FC, useState } from "react";
-import { Box, Button, Sheet, Text } from "zmp-ui";
+import { FC, useEffect, useRef, useState } from "react";
+import { Box, Button, Sheet, Text, useSnackbar } from "zmp-ui";
 import { Product } from "../../types/product";
 import { CartPlusIcon } from "../../icons/cart-plus-icon";
 import Price from "../display/price";
@@ -10,6 +10,17 @@ import { Cart } from "../../types/cart";
 export const ProductItem: FC<{ product: Product }> = ({ product }) => {
     const [sheetVisible, setSheetVisible] = useState(false);
     const [cart, setCart] = useRecoilState(cartState);
+
+    const { openSnackbar, closeSnackbar } = useSnackbar();
+    const timmerId = useRef();
+
+    useEffect(
+        () => () => {
+            closeSnackbar();
+            clearInterval(timmerId.current);
+        },
+        []
+    );
 
     const addCartItem = () => {
         if (product) {
@@ -37,6 +48,11 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
             });
         }
         setSheetVisible(false);
+        openSnackbar({
+            text: "Thêm giỏ hàng thành công",
+            type: "success",
+            position: "top",
+        });
     };
 
     return (
@@ -139,6 +155,17 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                                 {`Thêm vào giỏ hàng`}
                             </Button>
                         </Box>
+                        {/* <Box mt={6}>
+                            <Button
+                                variant="secondary"
+                                type="highlight"
+                                onClick={() => {
+                                    
+                                }}
+                            >
+                                Success
+                            </Button>
+                        </Box> */}
                     </Box>
                 </Box>
             </Sheet>
