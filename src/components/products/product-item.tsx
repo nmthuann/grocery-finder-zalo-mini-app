@@ -1,15 +1,15 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Box, Button, Sheet, Text, useSnackbar } from "zmp-ui";
+import Price from "../display/price";
 import { Product } from "../../types/product";
 import { CartPlusIcon } from "../../icons/cart-plus-icon";
-import Price from "../display/price";
-import { cartState } from "../../state";
-import { useRecoilState } from "recoil";
-import { Cart } from "../../types/cart";
+import {
+    getProductNameVietNamese,
+    handleProductImageLink,
+} from "../../utils/product";
 
 export const ProductItem: FC<{ product: Product }> = ({ product }) => {
     const [sheetVisible, setSheetVisible] = useState(false);
-    const [cart, setCart] = useRecoilState(cartState);
 
     const { openSnackbar, closeSnackbar } = useSnackbar();
     const timmerId = useRef();
@@ -22,31 +22,14 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
         []
     );
 
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(
+        product.descriptions[0].content,
+        "text/html"
+    );
+    const decodedContent = doc.body.innerHTML;
+
     const addCartItem = () => {
-        if (product) {
-            console.log("Thêm vào giỏ hàng", cart.length);
-            setCart((oldCart: Cart[]) => {
-                let newCart = [...oldCart];
-
-                const exsited = oldCart.find(
-                    (item) => item.product.id === product.id
-                );
-
-                if (exsited) {
-                    newCart.splice(oldCart.indexOf(exsited), 1, {
-                        ...exsited,
-                        quantity: exsited.quantity + 1,
-                    });
-                } else {
-                    newCart = newCart.concat({
-                        product,
-                        quantity: 1,
-                    });
-                }
-
-                return newCart;
-            });
-        }
         setSheetVisible(false);
         openSnackbar({
             text: "Thêm giỏ hàng thành công",
@@ -62,19 +45,19 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                     setSheetVisible(true);
                 }}
                 className="bg-white p-4 rounded-lg shadow-md
-                 w-[164px] h-[256px] cursor-pointer"
+                 w-[170px] h-[256px] cursor-pointer"
             >
                 <Box className="w-full aspect-square relative">
                     <img
-                        alt={product.name}
+                        alt={product.alias}
                         loading="lazy"
-                        src={product.image}
-                        className="absolute left-0 right-0 top-0 bottom-0 
+                        src={handleProductImageLink(product.image)}
+                        className="absolute left-0 right-0 top-0 bottom-0
                         w-full h-full object-cover object-center rounded-lg bg-skeleton"
                     />
                 </Box>
                 <Text bold size="large" className="pt-2">
-                    {product.name}
+                    {getProductNameVietNamese(product.descriptions)}
                 </Text>
                 <Box
                     flex
@@ -113,22 +96,23 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                     <Box className="flex flex-col items-center">
                         <img
                             alt="sản phẩm đã chọn"
-                            src={product.image}
+                            src={handleProductImageLink(product.image)}
                             style={{
-                                maxWidth: "100%",
-                                maxHeight: "100%",
                                 objectFit: "contain",
                             }}
+                            className="max-w-full max-h-full"
                         />
                     </Box>
                     <Box my={4}>
-                        <Text.Title>{product.name}</Text.Title>
+                        <Text.Title>
+                            {getProductNameVietNamese(product.descriptions)}
+                        </Text.Title>
                     </Box>
-                    <Box
-                        className="bottom-sheet-body mb-4"
-                        style={{ overflowY: "auto" }}
-                    >
-                        <Text>{product.description}</Text>
+                    <Box className="bottom-sheet-body mb-4 overflow-y-auto">
+                        {/* <Text>{decodedContent}</Text> */}
+                        <Text
+                            dangerouslySetInnerHTML={{ __html: decodedContent }}
+                        />
                     </Box>
                     <Box>
                         <Text
@@ -155,20 +139,34 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                                 {`Thêm vào giỏ hàng`}
                             </Button>
                         </Box>
-                        {/* <Box mt={6}>
-                            <Button
-                                variant="secondary"
-                                type="highlight"
-                                onClick={() => {
-                                    
-                                }}
-                            >
-                                Success
-                            </Button>
-                        </Box> */}
                     </Box>
                 </Box>
             </Sheet>
         </div>
     );
 };
+
+// if (product) {
+//     console.log("Thêm vào giỏ hàng", cart.length);
+//     setCart((oldCart: Cart[]) => {
+//         let newCart = [...oldCart];
+
+//         const exsited = oldCart.find(
+//             (item) => item.product.id === product.id
+//         );
+
+//         if (exsited) {
+//             newCart.splice(oldCart.indexOf(exsited), 1, {
+//                 ...exsited,
+//                 quantity: exsited.quantity + 1,
+//             });
+//         } else {
+//             newCart = newCart.concat({
+//                 product,
+//                 quantity: 1,
+//             });
+//         }
+
+//         return newCart;
+//     });
+// }

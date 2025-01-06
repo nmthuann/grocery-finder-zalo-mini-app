@@ -7,18 +7,16 @@ import {
     BrowserMultiFormatReader,
     DecodeHintType,
 } from "@zxing/library";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { cartState, productByBarcodeState } from "../../state";
-import { Product } from "../../types/product";
+import { useRecoilValue } from "recoil";
+import { productByBarcodeState } from "../../states/state";
+import { OldProduct } from "../../types/product";
 
 const ScanPage: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const cameraRef = useRef<ZMACamera>();
     const [barcode, setBarcode] = useState<string>("");
     const [isScanning, setIsScanning] = useState(false);
-    const [scannedProducts, setScannedProducts] = useState<Product[]>([]);
-
-    const setCart = useSetRecoilState(cartState);
+    const [scannedProducts, setScannedProducts] = useState<OldProduct[]>([]);
 
     const product = useRecoilValue(productByBarcodeState(barcode));
 
@@ -92,33 +90,6 @@ const ScanPage: React.FC = () => {
         cameraRef.current?.stop();
     };
 
-    function handleAddProduct(product: Product): void {
-        alert("Đã thêm vào giỏ hàng.");
-        if (product) {
-            setCart((cart: any) => {
-                let res = [...cart];
-
-                const existed = cart.find(
-                    (item: { product: { id: number } }) =>
-                        item.product.id === product.id
-                );
-                if (existed) {
-                    res.splice(cart.indexOf(existed), 1, {
-                        ...existed,
-                        quantity: existed.quantity + 1,
-                    });
-                } else {
-                    res = res.concat({
-                        product,
-                        quantity: 1,
-                    });
-                }
-
-                return res;
-            });
-        }
-    }
-
     return (
         <Page className="bg-slate-100 ">
             <Header title="Scan barcode" showBackIcon={false} />
@@ -188,7 +159,7 @@ const ScanPage: React.FC = () => {
                                             size={"small"}
                                             variant="primary"
                                             onClick={() =>
-                                                handleAddProduct(product)
+                                                alert("Đã thêm vào giỏ hàng.")
                                             }
                                             icon={<Icon icon="zi-plus" />}
                                         ></Button>

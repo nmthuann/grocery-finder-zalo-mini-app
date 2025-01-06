@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { Box, Button, Icon, Sheet, Text, useSnackbar } from "zmp-ui";
 import { Cart } from "../../types/cart";
 import { useRecoilState } from "recoil";
-import { cartState } from "../../state";
+import { cartState } from "../../states/state";
 import Price from "../../components/display/price";
 
 interface CartItemSheetProps {

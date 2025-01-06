@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useRecoilValue } from "recoil";
 import { Box, Button, Text } from "zmp-ui";
-import { cartState } from "../../state";
+import { cartState } from "../../states/state";
 import Price from "../../components/display/price";
 
 const init = 0;

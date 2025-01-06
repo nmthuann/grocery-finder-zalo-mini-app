@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { Box, Text } from "zmp-ui";
-import { cartState } from "../../state";
+import { cartState } from "../../states/state";
 import { Divider } from "../../components/ui/divider";
 import Price from "../../components/display/price";
 import { useState } from "react";

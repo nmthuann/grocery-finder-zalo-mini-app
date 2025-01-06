@@ -1,6 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Box, Text } from "zmp-ui";
-import { categoriesState, selectedCategoryIdState } from "../../state";
+import { categoriesState, selectedCategoryIdState } from "../../states/state";
 import { useNavigate } from "react-router-dom";
 
 const Categories = () => {

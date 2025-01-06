@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Box, Text } from "zmp-ui";
 import { News } from "../../types/news";
-import { truncateText } from "../../utils/truncate-text";
+import { truncateText } from "../../utils/product";
 export const NewsItem: FC<{ news: News }> = ({ news }) => {
     return (
-        <Box className="bg-white rounded-lg shadow-md w-[164px] h-[268px] cursor-pointer">
+        <Box className="bg-white rounded-lg shadow-md w-[170px] h-[268px] cursor-pointer">
             <Box className="w-full aspect-square relative">
                 <img
                     loading="lazy"

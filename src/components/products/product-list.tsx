@@ -1,14 +1,15 @@
 import { useRecoilValue } from "recoil";
-import { newsListState, productsState } from "../../state";
+import { newsListState, tempProductsState } from "../../states/state";
 import Section from "../ui/section";
-import { ProductItem } from "./product-item";
 import { FC, Suspense, useEffect, useState } from "react";
 import { ProductItemSkeleton } from "../ui/skeleton";
 import { Box, Button, Icon, Text } from "zmp-ui";
 import NewsItem from "./news-item";
+import { ProductItem } from "./product-item";
 
 export const ProductListContent: FC = () => {
-    const products = useRecoilValue(productsState);
+    const products = useRecoilValue(tempProductsState);
+
     const newsList = useRecoilValue(newsListState);
     const [visibleViewNews, setVisibleViewNews] = useState(
         newsList.slice(0, 4)
@@ -33,7 +34,7 @@ export const ProductListContent: FC = () => {
             </Box>
 
             <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-2 ">
-                {products.map((product) => (
+                {products.data.map((product) => (
                     <ProductItem key={product.id} product={product} />
                 ))}
             </Box>

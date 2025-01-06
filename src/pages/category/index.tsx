@@ -2,16 +2,19 @@ import { useRecoilValue } from "recoil";
 import { Box, Header, Page, Tabs, Text } from "zmp-ui";
 import {
     categoriesState,
-    productsByCategoryState,
+    // productsByCategoryState,
     selectedCategoryIdState,
-} from "../../state";
+} from "../../states/state";
 import { FC, Suspense } from "react";
-import { ProductItem } from "../../components/products/product-item";
+// import { ProductItem } from "../../components/products/product-item";
+import { Category } from "../../types/category";
 
-const CategoryProducts: FC<{ categoryId: string }> = ({ categoryId }) => {
-    const productsByCategory = useRecoilValue(
-        productsByCategoryState(categoryId)
-    );
+const CategoryProducts: FC<{ categoryId: string }> = () => {
+    // const productsByCategory = useRecoilValue(
+    //     productsByCategoryState(categoryId)
+    // );
+
+    const productsByCategory: Category[] = [];
 
     if (productsByCategory.length === 0) {
         return (
@@ -24,9 +27,9 @@ const CategoryProducts: FC<{ categoryId: string }> = ({ categoryId }) => {
     }
     return (
         <Box className="grid grid-cols-2 gap-4 p-4 max-h-screen overflow-y-auto">
-            {productsByCategory.map((product) => (
+            {/* {productsByCategory.map((product) => (
                 <ProductItem key={product.id} product={product} />
-            ))}
+            ))} */}
         </Box>
     );
 };
