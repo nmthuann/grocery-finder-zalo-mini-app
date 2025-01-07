@@ -10,7 +10,8 @@ export const CartPreview: FC = () => {
     const totalPrice = cart.reduce(
         (accumlator, currentItemValue) =>
             accumlator +
-            currentItemValue.product.price * currentItemValue.quantity,
+            parseFloat(currentItemValue.product.price) *
+                currentItemValue.quantity,
         init
     );
     return (

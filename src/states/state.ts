@@ -4,6 +4,7 @@ import categories from "../../mock/categories.json";
 import { News } from "../types/news";
 import { OldProduct, Page, Product,  } from "../types/product";
 import { Cart } from "../types/cart";
+import { getProductByPage } from "../utils/product";
 
 
 export function wait(ms: number) {
@@ -35,6 +36,14 @@ export const selectedCategoryIdState = atom({
 // });
 
 
+export const oldProductsState = selector<OldProduct[]>({
+  key: "products",
+  get: async () => {
+    await wait(2000);
+    return (await import("../../mock/products.json")).default;
+  }
+});
+
 export const productByBarcodeState = selectorFamily<OldProduct, string>({
   key: "productByBarcode",
   get:
@@ -45,20 +54,40 @@ export const productByBarcodeState = selectorFamily<OldProduct, string>({
     },
 })
 
-export const oldProductsState = selector<OldProduct[]>({
-  key: "products",
-  get: async () => {
-    await wait(2000);
-    return (await import("../../mock/products.json")).default;
+export const productByPageSate = selectorFamily<Page<Product>, number> ({
+  key:"productByPage",
+  get: (pageNumber: number) => async () => {
+    const products = await getProductByPage(pageNumber);
+    return products;
   }
-});
+})
 
-export const tempProductsState = selector<Page<Product>>({
-  key: "tempProducts",
+
+export const initProductsState = selector<Page<Product>>({
+  key: "initProducts",
   get: async () => {
-    await wait(2000);
-    const rawData = (await import("../../mock/flowers.json")).default;
-    return rawData;
+    const baseUrl = import.meta.env.VITE_API_URL ?? "https://staging-shop.fado.vn/api";
+    const url = `${baseUrl}/admin/products?page[number]=3`
+    const headers = {
+      accept: 'application/json',
+      apiconnection: 'appmobile',
+      'Content-Type': 'application/json',
+      Authorization: import.meta.env.VITE_AUTHORIZATION_TOKEN ?? "",
+      Cookie: import.meta.env.VITE_COOKIE ?? "",
+      apikey: import.meta.env.VITE_API_KEY ?? "",
+    };
+
+    
+    try {
+      const response = await fetch(url, { method: 'GET', headers: headers });
+      const data = await response.json();
+      console.log(data)
+      return data;
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; 
+    }
   }
 })
 
@@ -75,5 +104,3 @@ export const cartState = atom<Cart[]>({
   key: "cart",
   default: [],
 })
-
-

@@ -1,6 +1,6 @@
-import { OldProduct } from "./product";
+import {  Product } from "./product";
 
 export type Cart =  {
-  product: OldProduct;
+  product: Product;
   quantity: number;
 }

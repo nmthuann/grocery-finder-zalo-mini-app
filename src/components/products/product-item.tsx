@@ -6,11 +6,15 @@ import { CartPlusIcon } from "../../icons/cart-plus-icon";
 import {
     getProductNameVietNamese,
     handleProductImageLink,
+    truncateText,
 } from "../../utils/product";
+import { Cart } from "../../types/cart";
+import { useRecoilState } from "recoil";
+import { cartState } from "../../states/state";
 
 export const ProductItem: FC<{ product: Product }> = ({ product }) => {
     const [sheetVisible, setSheetVisible] = useState(false);
-
+    const [, setCart] = useRecoilState(cartState);
     const { openSnackbar, closeSnackbar } = useSnackbar();
     const timmerId = useRef();
 
@@ -22,15 +26,38 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
         []
     );
 
+    const descriptionContent = product.descriptions[0]
+        ? product.descriptions[0].content
+        : "";
     const parser = new DOMParser();
-    const doc = parser.parseFromString(
-        product.descriptions[0].content,
-        "text/html"
-    );
+    const doc = parser.parseFromString(descriptionContent, "text/html");
     const decodedContent = doc.body.innerHTML;
 
     const addCartItem = () => {
         setSheetVisible(false);
+        if (product) {
+            setCart((oldCart: Cart[]) => {
+                let newCart = [...oldCart];
+
+                const exsited = oldCart.find(
+                    (item) => item.product.id === product.id
+                );
+
+                if (exsited) {
+                    newCart.splice(oldCart.indexOf(exsited), 1, {
+                        ...exsited,
+                        quantity: exsited.quantity + 1,
+                    });
+                } else {
+                    newCart = newCart.concat({
+                        product,
+                        quantity: 1,
+                    });
+                }
+
+                return newCart;
+            });
+        }
         openSnackbar({
             text: "Thêm giỏ hàng thành công",
             type: "success",
@@ -57,7 +84,12 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                     />
                 </Box>
                 <Text bold size="large" className="pt-2">
-                    {getProductNameVietNamese(product.descriptions)}
+                    {truncateText(
+                        getProductNameVietNamese(
+                            product.descriptions
+                        )?.toString() ?? "",
+                        20
+                    )}
                 </Text>
                 <Box
                     flex
@@ -109,7 +141,6 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
                         </Text.Title>
                     </Box>
                     <Box className="bottom-sheet-body mb-4 overflow-y-auto">
-                        {/* <Text>{decodedContent}</Text> */}
                         <Text
                             dangerouslySetInnerHTML={{ __html: decodedContent }}
                         />
@@ -145,28 +176,3 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
         </div>
     );
 };
-
-// if (product) {
-//     console.log("Thêm vào giỏ hàng", cart.length);
-//     setCart((oldCart: Cart[]) => {
-//         let newCart = [...oldCart];
-
-//         const exsited = oldCart.find(
-//             (item) => item.product.id === product.id
-//         );
-
-//         if (exsited) {
-//             newCart.splice(oldCart.indexOf(exsited), 1, {
-//                 ...exsited,
-//                 quantity: exsited.quantity + 1,
-//             });
-//         } else {
-//             newCart = newCart.concat({
-//                 product,
-//                 quantity: 1,
-//             });
-//         }
-
-//         return newCart;
-//     });
-// }

@@ -1,4 +1,4 @@
-import { ProductDescription, ProductDescriptionLang } from "../types/product";
+import { Page, Product, ProductDescription, ProductDescriptionLang } from "../types/product";
 
 
 
@@ -27,4 +27,29 @@ export const  formatCurrency = (value: number)  =>  {
     if (value >= 1e6) return (value / 1e6).toFixed(1) + "M";
     if (value >= 1e3) return (value / 1e3).toFixed(1) + "K";
     return value.toString();
+}
+
+export const getProductByPage = async (pageNumber: number): Promise<Page<Product>> => {
+    const baseUrl = import.meta.env.VITE_API_URL ?? "https://staging-shop.fado.vn/api/admin/products?page[number]=";
+    const url = `${baseUrl}/admin/products?page[number]=${pageNumber}`
+    const headers = {
+      accept: 'application/json',
+      apiconnection: 'appmobile',
+      'Content-Type': 'application/json',
+      Authorization: import.meta.env.VITE_AUTHORIZATION_TOKEN ?? "",
+      Cookie: import.meta.env.VITE_COOKIE ?? "",
+      apikey: import.meta.env.VITE_API_KEY ?? "",
+    };
+
+    
+    try {
+      const response = await fetch(url, { method: 'GET', headers: headers });
+      const data = await response.json();
+      console.log(data)
+      return data;
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; 
+    }
 }

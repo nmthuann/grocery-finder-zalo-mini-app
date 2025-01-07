@@ -6,24 +6,26 @@ import Price from "../../components/display/price";
 import { useState } from "react";
 import CartItemSheet from "./cart-item-shee";
 import { Cart } from "../../types/cart";
+import {
+    getProductNameVietNamese,
+    handleProductImageLink,
+    truncateText,
+} from "../../utils/product";
 
 const CartItems = () => {
     const cart = useRecoilValue(cartState);
     const [sheetVisible, setSheetVisible] = useState(false);
-    const [itemSelected, setItemSelected] = useState<Cart>();
+    const [itemSelected, setItemSelected] = useState<Cart | null>(null);
 
     const handOnClickCartItem = (cartItem: Cart) => {
         setSheetVisible(true);
         if (cartItem) {
-            setItemSelected({
-                product: cartItem.product,
-                quantity: cartItem.quantity,
-            });
+            setItemSelected(cartItem);
         }
     };
 
     const handleSheetClose = () => {
-        setSheetVisible(false); // Đóng sheet
+        setSheetVisible(false);
     };
 
     return (
@@ -38,14 +40,26 @@ const CartItems = () => {
                         >
                             <Box>
                                 <img
-                                    alt={item.product.name}
+                                    alt={truncateText(
+                                        getProductNameVietNamese(
+                                            item.product.descriptions
+                                        )?.toString() ?? "",
+                                        20
+                                    )}
                                     className="w-10 h-10 rounded-lg"
-                                    src={item.product.image}
+                                    src={handleProductImageLink(
+                                        item.product.image
+                                    )}
                                 />
                             </Box>
                             <Box className="space-y-1 flex-1">
                                 <Text size="normal" bold>
-                                    {item.product.name}
+                                    {truncateText(
+                                        getProductNameVietNamese(
+                                            item.product.descriptions
+                                        )?.toString() ?? "",
+                                        20
+                                    )}
                                 </Text>
                                 <Text className="text-gray" size="small" bold>
                                     <Price amount={item.product.price} />
@@ -59,6 +73,13 @@ const CartItems = () => {
                             </Text>
                         </Box>
                         <Divider size={2} />
+                        {itemSelected && (
+                            <CartItemSheet
+                                visible={sheetVisible}
+                                setSheetVisible={handleSheetClose}
+                                itemSelected={itemSelected}
+                            />
+                        )}
                     </div>
                 ))
             ) : (
@@ -69,12 +90,6 @@ const CartItems = () => {
                     Không có sản phẩm trong giỏ hàng
                 </Text>
             )}
-
-            <CartItemSheet
-                visible={sheetVisible}
-                setSheetVisible={handleSheetClose}
-                itemSelected={itemSelected}
-            />
         </Box>
     );
 };

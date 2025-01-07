@@ -4,11 +4,16 @@ import { Cart } from "../../types/cart";
 import { useRecoilState } from "recoil";
 import { cartState } from "../../states/state";
 import Price from "../../components/display/price";
+import {
+    getProductNameVietNamese,
+    handleProductImageLink,
+    truncateText,
+} from "../../utils/product";
 
 interface CartItemSheetProps {
     visible: boolean;
     setSheetVisible(): void;
-    itemSelected?: Cart;
+    itemSelected: Cart;
 }
 
 const CartItemSheet: FC<CartItemSheetProps> = ({
@@ -32,27 +37,27 @@ const CartItemSheet: FC<CartItemSheetProps> = ({
         setQuantity(itemSelected?.quantity);
     }, [itemSelected]);
 
-    const increaseQuantity = (productId: number) => {
+    const increaseQuantity = (productId: string) => {
         const updateCart = cart.map((item) =>
             item.product.id === productId
                 ? { ...item, quantity: item.quantity + 1 }
                 : item
         );
-        setQuantity((prev) => prev! + 1);
+        setQuantity((prev) => prev + 1);
         setCart(updateCart);
     };
 
-    const decreaseQuantity = (productId: number) => {
+    const decreaseQuantity = (productId: string) => {
         const updateCart = cart.map((item) =>
             item.product.id === productId && item.quantity > 1
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
         );
-        setQuantity((prev) => prev! - 1);
+        setQuantity((prev) => prev - 1);
         setCart(updateCart);
     };
 
-    const removeItem = (productId: number) => {
+    const removeItem = (productId: string) => {
         const updateCart = cart.filter((item) => item.product.id !== productId);
         setCart(updateCart);
         handleSheetClose();
@@ -84,7 +89,7 @@ const CartItemSheet: FC<CartItemSheetProps> = ({
                 <Box className="flex flex-col items-center">
                     <img
                         alt="sản phẩm đã chọn"
-                        src={itemSelected?.product?.image}
+                        src={handleProductImageLink(itemSelected.product.image)}
                         style={{
                             maxWidth: "100%",
                             maxHeight: "100%",
@@ -93,19 +98,24 @@ const CartItemSheet: FC<CartItemSheetProps> = ({
                     />
                 </Box>
                 <Box my={4}>
-                    <Text.Title>{`Thêm sản phẩm ${itemSelected?.product?.name}`}</Text.Title>
+                    <Text.Title>{`Thêm sản phẩm ${truncateText(
+                        getProductNameVietNamese(
+                            itemSelected.product.descriptions
+                        ) ?? "Tên sản phẩm không có sẵn",
+                        20
+                    )}`}</Text.Title>
                 </Box>
 
                 <Box flex className="justify-between items-center">
                     <Box flex className="space-x-2 mb-2">
                         <Text size="large">
-                            <Price amount={itemSelected?.product.price ?? 0} />
+                            <Price amount={itemSelected.product.price ?? 0} />
                         </Text>
                         <Button
                             size="small"
                             icon={<Icon icon="zi-plus-circle" />}
                             onClick={() => {
-                                increaseQuantity(itemSelected?.product?.id!);
+                                increaseQuantity(itemSelected.product.id);
                             }}
                         />
                         <Text size="large">{quantity}</Text>
@@ -114,7 +124,7 @@ const CartItemSheet: FC<CartItemSheetProps> = ({
                             icon={<Icon icon="zi-minus-circle" />}
                             disabled={quantity === 1}
                             onClick={() => {
-                                decreaseQuantity(itemSelected?.product?.id!);
+                                decreaseQuantity(itemSelected.product.id);
                             }}
                         />
                     </Box>
@@ -124,7 +134,7 @@ const CartItemSheet: FC<CartItemSheetProps> = ({
                             size="small"
                             variant="tertiary"
                             onClick={() => {
-                                removeItem(itemSelected?.product.id!);
+                                removeItem(itemSelected.product.id);
                             }}
                         >
                             Xóa
